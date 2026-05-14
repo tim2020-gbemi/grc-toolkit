@@ -23,6 +23,8 @@
         .role-viewer { background:#2a2a3d; color:#9999bb; }
         .logout-btn { background:transparent; border:1px solid var(--border); color:var(--muted); border-radius:4px; padding:4px 12px; font-family:'IBM Plex Mono',monospace; font-size:11px; cursor:pointer; text-decoration:none; }
         .logout-btn:hover { border-color:var(--accent); color:var(--text); }
+        .pdf-btn { background:var(--accent); color:#fff; border-radius:4px; padding:4px 12px; font-family:'IBM Plex Mono',monospace; font-size:11px; cursor:pointer; text-decoration:none; }
+        .pdf-btn:hover { opacity:.85; }
 
         /* SCORE BANNER */
         .score-banner { display:flex; align-items:center; gap:20px; background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:20px 28px; margin-bottom:32px; }
@@ -86,6 +88,7 @@
         <div class="topbar-right">
             <div class="user-badge">Signed in as <span>{{ username }}</span></div>
             <span class="role-badge role-{{ role }}">{{ role | upper }}</span>
+            <a href="/pdf" class="pdf-btn">Download PDF</a>
             <a href="/logout" class="logout-btn">Sign Out</a>
         </div>
     </div>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Compliance Report</title>
+    <style>
+        /* PDF-optimized styles. No external fonts, no CSS variables. */
+        /* WeasyPrint renders this to PDF so we keep it simple and clean. */
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            color: #1a1a2e;
+            padding: 40px;
+            background: #ffffff;
+        }
+
+        /* HEADER */
+        .header {
+            border-left: 4px solid #4f8ef7;
+            padding-left: 16px;
+            margin-bottom: 32px;
+        }
+        .header h1 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #0d0d1a;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+        .header p {
+            font-size: 11px;
+            color: #666;
+        }
+
+        /* SCORE BANNER */
+        .score-banner {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            background: #f4f6fb;
+            border: 1px solid #d0d8f0;
+            border-radius: 6px;
+            padding: 16px 24px;
+            margin-bottom: 24px;
+        }
+        .score-number {
+            font-size: 40px;
+            font-weight: bold;
+            color: #4f8ef7;
+            line-height: 1;
+        }
+        .score-label {
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .score-divider {
+            width: 1px;
+            height: 40px;
+            background: #d0d8f0;
+        }
+        .score-note {
+            font-size: 11px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* SUMMARY CARDS */
+        .cards {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .card {
+            flex: 1;
+            border: 1px solid #d0d8f0;
+            border-radius: 6px;
+            padding: 14px;
+            text-align: center;
+            background: #f9faff;
+        }
+        .card .count {
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .card .label {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #888;
+        }
+        .card.compliant  .count { color: #1a7a4a; }
+        .card.partial    .count { color: #a07000; }
+        .card.noncomp    .count { color: #c0302a; }
+        .card.unassessed .count { color: #888; }
+
+        /* SECTION TITLE */
+        .section-title {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #888;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #e0e4f0;
+        }
+
+        /* CONTROLS TABLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 32px;
+        }
+        thead th {
+            background: #f0f3fb;
+            color: #555;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 8px 10px;
+            text-align: left;
+            border-bottom: 2px solid #d0d8f0;
+        }
+        tbody tr { border-bottom: 1px solid #eaecf5; }
+        tbody tr:nth-child(even) { background: #f9faff; }
+        td { padding: 8px 10px; vertical-align: top; font-size: 10px; }
+        td small { display: block; color: #888; font-size: 9px; margin-top: 2px; }
+
+        .control-id { font-weight: bold; color: #4f8ef7; white-space: nowrap; }
+        .description { max-width: 200px; }
+
+        /* STATUS BADGE */
+        .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .status-compliant  { background: #d4f0e0; color: #1a7a4a; }
+        .status-partial    { background: #fff0c0; color: #a07000; }
+        .status-noncomp    { background: #fdd; color: #c0302a; }
+        .status-unassessed { background: #eee; color: #888; }
+
+        /* FUNCTION BADGE */
+        .func-badge {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 8px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .func-govern   { background: #dde8ff; color: #2255bb; }
+        .func-identify { background: #d4f5e8; color: #1a6644; }
+        .func-protect  { background: #ecdeff; color: #6622aa; }
+        .func-detect   { background: #fff3d4; color: #885500; }
+        .func-respond  { background: #ffe0e0; color: #aa2222; }
+        .func-recover  { background: #d4f5f5; color: #116666; }
+
+        /* AUDIT LOG */
+        .audit-table td { font-size: 9px; }
+
+        /* FOOTER */
+        .footer {
+            margin-top: 32px;
+            padding-top: 12px;
+            border-top: 1px solid #e0e4f0;
+            font-size: 9px;
+            color: #aaa;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* PAGE BREAK - keeps table rows from splitting across pages */
+        tr { page-break-inside: avoid; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>COMPLIANCE REPORT</h1>
+        <p>NIST CSF 2.0 &nbsp;/&nbsp; ISO 27001:2022 &nbsp;/&nbsp; SOC 2 TSC &nbsp;&nbsp;|&nbsp;&nbsp;
+           Generated: {{ date }} &nbsp;&nbsp;|&nbsp;&nbsp; By: {{ username }}</p>
+    </div>
+
+    <div class="score-banner">
+        <div>
+            <div class="score-number">{{ score }}%</div>
+            <div class="score-label">Compliance Score</div>
+        </div>
+        <div class="score-divider"></div>
+        <div class="score-note">
+            Based on <strong>{{ total }}</strong> controls assessed across three frameworks.<br>
+            Score counts only Compliant controls as passed.
+        </div>
+    </div>
+
+    <div class="cards">
+        <div class="card compliant">
+            <div class="count">{{ summary['Compliant'] }}</div>
+            <div class="label">Compliant</div>
+        </div>
+        <div class="card partial">
+            <div class="count">{{ summary['Partial'] }}</div>
+            <div class="label">Partial</div>
+        </div>
+        <div class="card noncomp">
+            <div class="count">{{ summary['Non-Compliant'] }}</div>
+            <div class="label">Non-Compliant</div>
+        </div>
+        <div class="card unassessed">
+            <div class="count">{{ summary['Not Assessed'] }}</div>
+            <div class="label">Not Assessed</div>
+        </div>
+    </div>
+
+    <p class="section-title">Controls</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Control ID</th>
+                <th>Function</th>
+                <th>Description</th>
+                <th>ISO 27001</th>
+                <th>SOC 2 TSC</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in controls %}
+            <tr>
+                <td class="control-id">{{ row['control_id'] }}</td>
+                <td>
+                    <span class="func-badge func-{{ row['nist_function'] | lower }}">
+                        {{ row['nist_function'] }}
+                    </span>
+                </td>
+                <td class="description">{{ row['nist_description'] }}</td>
+                <td>{{ row['iso_27001'] }}<small>{{ row['iso_description'] }}</small></td>
+                <td>{{ row['soc2_tsc'] }}<small>{{ row['soc2_description'] }}</small></td>
+                <td>
+                    {% set s = row['status'] %}
+                    {% if s == 'Compliant' %}
+                        <span class="status-badge status-compliant">Compliant</span>
+                    {% elif s == 'Partial' %}
+                        <span class="status-badge status-partial">Partial</span>
+                    {% elif s == 'Non-Compliant' %}
+                        <span class="status-badge status-noncomp">Non-Compliant</span>
+                    {% else %}
+                        <span class="status-badge status-unassessed">Not Assessed</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p class="section-title">Recent Activity</p>
+    <table class="audit-table">
+        <thead>
+            <tr>
+                <th>Control</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Changed By</th>
+                <th>When</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in audit_log %}
+            <tr>
+                <td><strong>{{ entry['control_id'] }}</strong></td>
+                <td>{{ entry['old_status'] }}</td>
+                <td>{{ entry['new_status'] }}</td>
+                <td>{{ entry['changed_by'] }}</td>
+                <td>{{ entry['changed_at'] }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" style="color:#aaa;text-align:center;padding:12px;">
+                    No changes recorded yet.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="footer">
+        <span>grc-toolkit / compliance report</span>
+        <span>{{ date }}</span>
+    </div>
+
+</body>
+</html>
