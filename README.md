@@ -56,4 +56,3 @@ Tools used: Python 3, GitHub Copilot, VS Code.
 
 - [ ] Vulnerability tracker with CVE to asset mapping
 - [ ] Risk scoring engine (likelihood x impact)
-- [ ] Portfolio site with live dashboard demo
