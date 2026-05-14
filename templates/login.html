@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRC Toolkit - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg:#0d0d1a; --surface:#13131f; --border:#1e1e35; --accent:#4f8ef7; --text:#d0d0e8; --muted:#5a5a7a; --error:#f76f6f; }
+        * { box-sizing:border-box; margin:0; padding:0; }
+        body { background:var(--bg); color:var(--text); font-family:'IBM Plex Sans',sans-serif; min-height:100vh; display:flex; align-items:center; justify-content:center; }
+        .login-box { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:40px; width:100%; max-width:400px; }
+        .login-box h1 { font-family:'IBM Plex Mono',monospace; font-size:18px; color:#fff; letter-spacing:.05em; margin-bottom:6px; }
+        .login-box p { color:var(--muted); font-size:12px; font-family:'IBM Plex Mono',monospace; margin-bottom:32px; }
+        .field { margin-bottom:20px; }
+        .field label { display:block; font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-bottom:8px; font-family:'IBM Plex Mono',monospace; }
+        .field input { width:100%; background:var(--bg); border:1px solid var(--border); border-radius:5px; padding:10px 14px; color:var(--text); font-size:14px; font-family:'IBM Plex Sans',sans-serif; outline:none; }
+        .field input:focus { border-color:var(--accent); }
+        .error { background:rgba(247,111,111,.1); border:1px solid rgba(247,111,111,.3); border-radius:5px; padding:10px 14px; color:var(--error); font-size:13px; margin-bottom:20px; }
+        .btn { width:100%; background:var(--accent); color:#fff; border:none; border-radius:5px; padding:12px; font-size:14px; font-family:'IBM Plex Mono',monospace; cursor:pointer; letter-spacing:.05em; }
+        .btn:hover { opacity:.85; }
+        .hint { margin-top:20px; padding-top:20px; border-top:1px solid var(--border); font-size:11px; color:var(--muted); font-family:'IBM Plex Mono',monospace; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h1>GRC TOOLKIT</h1>
+        <p>Compliance Dashboard / Sign In</p>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST" action="/login">
+            <div class="field">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Enter username" required autofocus>
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter password" required>
+            </div>
+            <button class="btn" type="submit">SIGN IN</button>
+        </form>
+    </div>
+</body>
+</html>
