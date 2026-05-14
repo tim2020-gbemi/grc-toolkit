@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compliance Report - 2026-05-14</title>
+    <style>
+        body { font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 0; background: #f4f6f8; color: #1f2937; }
+        .page-wrap { max-width: 1200px; margin: 0 auto; padding: 32px; }
+        .header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+        .header h1 { margin: 0; font-size: 2rem; letter-spacing: -0.03em; }
+        .header p { margin: 0; color: #4b5563; }
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 28px; }
+        .status-card { padding: 20px; border-radius: 16px; border: 1px solid; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08); background: #fff; }
+        .status-card-title { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.12em; color: #374151; margin-bottom: 8px; }
+        .status-card-value { font-size: 2rem; font-weight: 700; color: #111827; }
+        .status-card.compliant { border-color: #22c55e; background: #ecfdf5; }
+        .status-card.partial { border-color: #f59e0b; background: #fffbeb; }
+        .status-card.non-compliant { border-color: #ef4444; background: #fef2f2; }
+        .status-card.not-assessed { border-color: #6b7280; background: #f3f4f6; }
+        .report-meta { margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 12px; color: #4b5563; }
+        .table-wrap { overflow-x: auto; background: white; border-radius: 20px; padding: 16px; box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08); }
+        table { width: 100%; border-collapse: collapse; min-width: 960px; }
+        th, td { padding: 14px 16px; text-align: left; vertical-align: top; }
+        th { background: #1f2937; color: #f9fafb; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.01em; }
+        tr:nth-child(even) td { background: #f8fafc; }
+        td { border-bottom: 1px solid #e5e7eb; color: #334155; }
+        .status-badge { display: inline-flex; align-items: center; padding: 6px 10px; border-radius: 9999px; font-size: 0.85rem; font-weight: 600; }
+        .status-badge.compliant { background: rgba(34, 197, 94, 0.12); color: #166534; }
+        .status-badge.partial { background: rgba(245, 158, 11, 0.12); color: #92400e; }
+        .status-badge.non-compliant { background: rgba(239, 68, 68, 0.12); color: #b91c1c; }
+        .status-badge.not-assessed { background: rgba(107, 114, 128, 0.12); color: #374151; }
+        @media (max-width: 760px) { .header { flex-direction: column; align-items: flex-start; } }
+    </style>
+</head>
+<body>
+    <div class="page-wrap">
+        <div class="header">
+            <div>
+                <h1>Compliance Report</h1>
+                <p>NIST CSF 2.0 to ISO 27001:2022 and SOC 2 TSC mapping</p>
+            </div>
+            <div class="report-meta">
+                <span>Generated: 2026-05-14</span>
+                <span>Total controls: 13</span>
+            </div>
+        </div>
+        <div class="summary-grid">
+            <div class="status-card compliant"><div class="status-card-title">Compliant</div><div class="status-card-value">0</div></div>
+<div class="status-card partial"><div class="status-card-title">Partial</div><div class="status-card-value">0</div></div>
+<div class="status-card non-compliant"><div class="status-card-title">Non-Compliant</div><div class="status-card-value">0</div></div>
+<div class="status-card not-assessed"><div class="status-card-title">Not Assessed</div><div class="status-card-value">13</div></div>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Control ID</th>
+                        <th>NIST Function</th>
+                        <th>NIST Description</th>
+                        <th>ISO 27001</th>
+                        <th>ISO Detail</th>
+                        <th>SOC 2 TSC</th>
+                        <th>SOC 2 Detail</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>GV.OC-01</td><td>GOVERN</td><td>Organizational mission, stakeholder expectations, and legal requirements are understood and documented.</td><td>5.1, 5.2, 6.1.1</td><td>Leadership &amp; organizational context</td><td>CC1.1, CC1.2</td><td>Control Environment - Integrity &amp; Ethical Values</td><td><span class="status-badge not-assessed">Not Assessed</span></td></tr>
+<tr><td>GV.RM-01</td><td>GOVERN</td><td>Risk management objectives are established and agreed to by stakeholders.</td><td>6.1.2, 6.1.3</td><td>Information security risk assessment &amp; treatment</td><td>CC3.1, CC3.2</td><td>Risk Assessment - Specifies Objectives</td><td><span class="status-badge not-assessed">Not Assessed</span></td></tr>
+<tr><td>ID.AM-01</td><td>IDENTIFY</td><td>Inventories of hardware managed by the organization are maintained.</td><td>8.1, 5.9</td><td>Inventory of information and other associated assets</td><td>CC6.1</td><td>Logical &amp; Physical Access Controls</td><td><span class="status-badge not-assessed">Not Assessed</span></td></tr>
+<tr><td>ID.AM-02</td><td>IDENTIFY</td><td>Inventories of software, services, and systems managed by the organization are maintained.</td><td>8.1, 8.8</td><td>Asset inventory &amp; management of technical vulnerabilities</td><td>CC6.1, CC7.1</td><td>Logical Access &amp; System Operations</td><td><span class="status-badge not-assessed">Not Assessed</span></td></tr>
+<tr><td>ID.RA-01</td><td>IDENTIFY</td><td>Vulnerabilities in assets are identified, validated, and recorded.</td><td>8.8, 6.1.2</td><td>Management of technical vulnerabilities &amp; risk assessment</td><td>CC3.2, CC7.1</td><td>Risk Assessment &amp; System Operations</td><td><span class="status-badge not-assessed">Not Assessed</span></td></tr>
+<tr><td>PR.AA-01</td><td>PROTECT</td><td>Identities and credentials for authorized users, services, and hardware are managed.</td><td>5.15, 5.16, 5.17</td><td>Access control, identity management, authentication</td><td>CC6.1, CC6.2, CC6.3</td><td>Logical &amp; Physical Access Controls</td><td><span class="status-badge not-assessed">Not Assessed</span></td></tr>
+<tr><td>PR.DS-01</td><td>PROTECT</td><td>The confidentiality, integrity, and availability of data-at-rest are protected.</td><td>8.24, 8.5</td><td>Use of cryptography &amp; secure authentication</td><td>CC6.1, CC6.7</td><td>Logical Access &amp; Transmission Protections</td><td><span class="status-badge not-assessed">Not Assessed</span></td></tr>
+<tr><td>PR.DS-02</td><td>PROTECT</td><td>The confidentiality, integrity, and availability of data-in-transit are protected.</td><td>8.24, 8.20</td><td>Cryptography &amp; network security controls</td><td>CC6.7</td><td>Transmission Integrity &amp; Confidentiality</td><td><span class="status-badge not-assessed">Not Assessed</span></td></tr>
+<tr><td>DE.CM-01</td><td>DETECT</td><td>Networks and network services are monitored to find potentially adverse events.</td><td>8.16, 8.15</td><td>Monitoring activities &amp; logging</td><td>CC7.2, CC7.3</td><td>System Operations - Anomaly Detection</td><td><span class="status-badge not-assessed">Not Assessed</span></td></tr>
+<tr><td>DE.AE-02</td><td>DETECT</td><td>Potentially adverse events are analyzed to better characterize them.</td><td>8.16, 5.25</td><td>Monitoring &amp; assessment of information security events</td><td>CC7.3, CC7.4</td><td>Evaluation &amp; Response to Security Events</td><td><span class="status-badge not-assessed">Not Assessed</span></td></tr>
+<tr><td>RS.MA-01</td><td>RESPOND</td><td>The incident response plan is executed in coordination with relevant parties.</td><td>5.26, 5.24</td><td>Response to information security incidents</td><td>CC7.4, CC7.5</td><td>Incident Response &amp; Recovery</td><td><span class="status-badge not-assessed">Not Assessed</span></td></tr>
+<tr><td>RS.CO-02</td><td>RESPOND</td><td>Internal and external stakeholders are notified of incidents.</td><td>5.26, 6.1.3</td><td>Incident response &amp; disclosure obligations</td><td>CC2.2, CC7.4</td><td>Communication &amp; Incident Response</td><td><span class="status-badge not-assessed">Not Assessed</span></td></tr>
+<tr><td>RC.RP-01</td><td>RECOVER</td><td>The recovery portion of the incident response plan is executed once initiated.</td><td>5.29, 5.30</td><td>Information security during disruption &amp; ICT readiness</td><td>A1.2, A1.3</td><td>Availability - Recovery &amp; Restoration</td><td><span class="status-badge not-assessed">Not Assessed</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
