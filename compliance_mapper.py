@@ -4,7 +4,7 @@ Compliance Control Cross-Reference Mapper
 Maps NIST CSF controls to ISO 27001 and SOC 2 equivalents.
 Generates a compliance report you can share or extend.
 
-Author: [Your Name]
+Author: Oluwatimilehin Oluwagbemi
 Purpose: GRC Portfolio Project
 Frameworks: NIST CSF 2.0, ISO 27001:2022, SOC 2 TSC
 """
